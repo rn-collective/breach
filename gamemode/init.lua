@@ -4,6 +4,7 @@ AddCSLuaFile 'shared.lua'
 include 'shared.lua'
 
 function BREACH:InitializeServer()
+    rnlib.p 'Server initialized'
     for i = 1, #engine.GetAddons() do
         local addonID = engine.GetAddons()[i].wsid
         resource.AddWorkshop(addonID)

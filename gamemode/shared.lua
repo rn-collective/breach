@@ -6,17 +6,11 @@ GM.Author 	= 'SCP: Snow Seazon'
 BREACH = BREACH || {}
 BREACH.Author = GM.Author
 BREACH.Version = 'Beta 1.0'
-BREACH.Files = {
-	'meta/cl_player.lua',
-	'meta/sv_player.lua'
-}
 BREACH.Modules = {}
 
 function BREACH:Core()
-	for i = 1, #self.Files do
-		rnlib.i(self.Files[i])
-		rnlib.p('Loaded \'%s\'', self.Files[i])
-	end
+	rnlib.i('meta/sv_player.lua', 'server')
+	rnlib.i('meta/cl_player.lua', 'client')
 
 	-- modules
 	for dir, status in pairs(BREACH.Modules) do
