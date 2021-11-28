@@ -1,0 +1,8 @@
+"scpsz"
+{
+	"base"		"base"
+	"title"		"SCP: Snow Seazon"
+	"maps"		"br_site15_v2a"
+	"menusystem"	"1"
+	"category"		"pvp"
+}
