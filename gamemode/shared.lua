@@ -1,5 +1,5 @@
 
-GM.Name 	= "SCP: Snow Seazon"
+GM.Name 	= "Breach"
 GM.Website 	= "https://discord.gg/yjQv9pYwbC"
 GM.Author 	= 'SCP: Snow Seazon'
 
