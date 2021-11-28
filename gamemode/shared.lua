@@ -27,8 +27,9 @@ hook.Add('InitPostEntity', 'BREACH.Initialization', function()
 	RunConsoleCommand('sv_location', 'ru')
 	RunConsoleCommand('hostname', 'SCP: Snow Seazon > '..BREACH['Version'])
 	if SERVER then
-		timer.Simple(1, function()
-			BREACH:InitializeAddons()
-		end)
+		BREACH:InitializeServer()
+	end
+	if CLIENT then
+		BREACH:InitializeClient()
 	end
 end)
