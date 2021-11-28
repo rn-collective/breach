@@ -6,7 +6,7 @@ GM.Author 	= 'SCP: Snow Seazon'
 BREACH = BREACH || {}
 BREACH.Author = GM.Author
 BREACH.Version = 'Beta 1.0'
-BREACH.Modules = {}
+BREACH.Modules = {['ui'] = true}
 
 function BREACH:Core()
 	rnlib.i('meta/sv_player.lua', 'server')
