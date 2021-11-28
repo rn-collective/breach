@@ -23,7 +23,7 @@ function GM:GetGameDescription()
 	return self['Name']
 end
 
-hook.Add('InitPostEntity', 'BREACH.Exec', function()
+hook.Add('InitPostEntity', 'BREACH.Initialization', function()
 	RunConsoleCommand('sv_location', 'ru')
 	RunConsoleCommand('hostname', 'SCP: Snow Seazon > '..BREACH['Version'])
 	if SERVER then
