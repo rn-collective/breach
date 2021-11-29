@@ -20,6 +20,9 @@ function BREACH:Core()
             rnlib.p('%s | Loaded \'%s\' module', dir, string.Right(file, #file - 3))
         end
     end
+
+	local cfg, map_cfg = rnlib.yaml['Read']('gamemodes/breach/gamemode/configs/basic.yml') || {}, rnlib.yaml['Read']('gamemodes/breach/gamemode/configs/'..game.GetMap()..'.yml') || {}
+	_G['BreachConfig'] = table.Merge(cfg, map_cfg)
 end
 BREACH:Core()
 

@@ -1,0 +1,6 @@
+rp_scp_site19:
+  buttons: ['']
+  spawns:
+    basic:
+      startpos: ['-10995 13000 800', '-4 -25.6 0']
+  classes: ['']
