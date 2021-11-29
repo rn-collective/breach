@@ -16,7 +16,7 @@ function BREACH:Core()
 	for dir, status in pairs(BREACH.Modules) do
         if !status then continue end
         for _, file in ipairs(file.Find('breach/gamemode/modules/'..dir..'/*.lua','LUA')) do
-            rnlib.i(dir..'/'..file)
+            rnlib.i('breach/gamemode/modules/'..dir..'/'..file)
             rnlib.p('%s | Loaded \'%s\' module', dir, string.Right(file, #file - 3))
         end
     end
