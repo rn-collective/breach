@@ -8,23 +8,25 @@ BREACH.Author = GM.Author
 BREACH.Version = 'Beta 1.0'
 BREACH.Modules = {['ui'] = true}
 
-function BREACH:Core()
-	rnlib.i('meta/sv_player.lua', 'server')
-	rnlib.i('meta/cl_player.lua', 'client')
-
-	-- modules
-	for dir, status in pairs(BREACH.Modules) do
-        if !status then continue end
-        for _, file in ipairs(file.Find('breach/gamemode/modules/'..dir..'/*.lua','LUA')) do
-            rnlib.i('breach/gamemode/modules/'..dir..'/'..file)
-            rnlib.p('%s | Loaded \'%s\' module', dir, string.Right(file, #file - 3))
-        end
-    end
-
-	local cfg, map_cfg = rnlib.yaml['Read']('gamemodes/breach/gamemode/configs/basic.yml') || {}, rnlib.yaml['Read']('gamemodes/breach/gamemode/configs/'..game.GetMap()..'.yml') || {}
-	_G['BreachConfig'] = table.Merge(cfg, map_cfg)
-end
-BREACH:Core()
+local core_dump = rnlib.dump.Register 'BREACH.Init'
+	core_dump:RegisterStoredTable()
+	core_dump:AddValue(function(io, path)
+		for dir, status in pairs(io) do
+			if !status then continue end
+			for _, file in ipairs(file.Find(Format(path..'*.lua', dir), 'LUA')) do
+				rnlib.i(Format(path, dir)..file)
+				rnlib.p('%s | Loaded \'%s\' module', dir, file)
+			end
+		end
+	end)
+	core_dump:AddValue(function()
+		local cfg, map_cfg = rnlib.yaml['Read']('gamemodes/breach/gamemode/configs/basic.yml') || {}, rnlib.yaml['Read']('gamemodes/breach/gamemode/configs/'..game.GetMap()..'.yml') || {}
+		_G['BreachConfig'] = table.Merge(cfg, map_cfg)
+	end)
+	core_dump:Execute(1, {['meta'] = true}, 'breach/gamemode/%s/')
+	core_dump:Execute(1, BREACH.Modules, 'breach/gamemode/modules/%s/')
+	core_dump:Execute(2)
+BREACH.Core = core_dump
 
 function GM:GetGameDescription()
 	return self['Name']
