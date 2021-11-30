@@ -15,7 +15,7 @@ local core_dump = rnlib.dump.Register 'BREACH.Init'
 			if !status then continue end
 			for _, file in ipairs(file.Find(Format(path..'*.lua', dir), 'LUA')) do
 				rnlib.i(Format(path, dir)..file)
-				rnlib.p('%s | Loaded \'%s\' module', dir, file)
+				rnlib.p('[BREACH] %s | Loaded \'%s\'', dir, file)
 			end
 		end
 	end)
