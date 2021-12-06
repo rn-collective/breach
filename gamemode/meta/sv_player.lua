@@ -3,6 +3,40 @@ function PLAYER:Notify(str)
     netstream.Start(self, 'BREACH.ReceiveNotify', str)
 end
 
+local k_buffer  = {
+    [1] = {'br_keycards_classic_lvl1', {1}},
+    [2] = {'br_keycards_classic_lvl2', {1, 2}},
+    [3] = {'br_keycards_classic_lvl3', {1, 2, 3}},
+    [4] = {'br_keycards_classic_lvl4', {1, 2, 3, 4}},
+    [5] = {'br_keycards_classic_lvl5', {1, 2, 3, 4, 5}}
+}
+
+function PLAYER:HasKeyLevel(lvl)
+    local status = false
+    local aw = self:GetActiveWeapon() if !aw || !IsValid(aw) || aw.GetClass == nil then return false end
+    for i = 1, #k_buffer do
+        if k_buffer[i][1] == aw:GetClass() then
+            if table.HasValue(k_buffer[i][2], lvl) then
+                status = true
+                break
+            end
+        end
+    end
+    return status
+end
+
+local k_del_massive = {}
+function ENTITY:EmitDelayedSound(snd, delay)
+    if !k_del_massive[snd] then
+        k_del_massive[snd] = {CurTime() + delay}
+    end
+
+    if k_del_massive[snd][1] < CurTime() then
+        self:EmitSound(snd)
+        k_del_massive[snd] = {CurTime() + delay}
+    end
+end
+
 function PLAYER:EnableSpectator()
     self:StripWeapons()
     self:StripAmmo()

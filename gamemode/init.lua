@@ -41,4 +41,12 @@ end)
 
 hook.Add('PlayerUse', 'BREACH.Basic', function(client, ent)
     if client:Team() == TEAM_SPECTATOR then return false end
+    for _, v in pairs(_G['BreachConfig'][game.GetMap()]['buttons']) do
+        if Vector(v.pos[1]) == ent:GetPos() then
+            if !client:HasKeyLevel(v.level) then
+                ent:EmitDelayedSound('rn_breach/keycarduse2.ogg', 1)
+                return false
+            end
+        end
+    end
 end)
