@@ -27,7 +27,11 @@ end
 
 local k_del_massive = {}
 function ENTITY:EmitDelayedSound(snd, delay)
-    if (k_del_massive[snd][1] || 0) < CurTime() then
+    if !k_del_massive[snd] then
+        k_del_massive[snd] = {CurTime() + delay}
+    end
+
+    if k_del_massive[snd][1] < CurTime() then
         self:EmitSound(snd)
         k_del_massive[snd] = {CurTime() + delay}
     end
