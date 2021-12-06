@@ -2,6 +2,8 @@
 AddCSLuaFile 'cl_init.lua'
 AddCSLuaFile 'shared.lua'
 include 'shared.lua'
+rnlib.AddContentDir 'materials/rn_breach/'
+rnlib.AddContentDir 'sound/rn_breach/'
 
 function BREACH:InitializeServer()
     rnlib.p 'Server initialized'
