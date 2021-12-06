@@ -22,6 +22,11 @@ local core_dump = rnlib.dump.Register 'BREACH.Init'
 	core_dump:AddValue(function()
 		local cfg, map_cfg = rnlib.yaml['Read']('gamemodes/breach/gamemode/configs/basic.yml') || {}, rnlib.yaml['Read']('gamemodes/breach/gamemode/configs/'..game.GetMap()..'.yml') || {}
 		_G['BreachConfig'] = table.Merge(cfg, map_cfg)
+
+		local map = game.GetMap()
+		if file.Exists('breach/gamemode/configs/'..map..'.lua', 'LUA') then
+			rnlib.i('breach/gamemode/configs/'..map..'.lua')
+		end
 	end)
 	core_dump:Execute(1, {['meta'] = true}, 'breach/gamemode/%s/')
 	core_dump:Execute(1, BREACH.Modules, 'breach/gamemode/modules/%s/')
