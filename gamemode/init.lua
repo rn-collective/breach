@@ -21,6 +21,7 @@ hook.Add('PlayerInitialSpawn', 'BREACH.Initialization', function(client)
             rnlib.p('Executive spawned: %s', client:SteamID())
         end
 
+        client:ScreenFade(SCREENFADE.IN, color_black, 1.5, .5)
         client:SetCanZoom(false)
         client:EnableSpectator()
 
@@ -28,6 +29,8 @@ hook.Add('PlayerInitialSpawn', 'BREACH.Initialization', function(client)
             client:SetPos(Vector(_G['BreachConfig'][game.GetMap()]['spawns']['basic']['startpos'][1]))
             client:SetEyeAngles(Angle(_G['BreachConfig'][game.GetMap()]['spawns']['basic']['startpos'][2]))
         end
+
+        netstream.Start(client, 'BREACH.OpenMenu')
     end)
 end)
 
