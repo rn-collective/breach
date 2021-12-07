@@ -201,6 +201,24 @@ rp_scp_site19:
     hcz_warheads_3:
       pos: ['131.360001 2800.020020 -6599.990234']
       level: 5
+    ez_checkpoint_1:
+      pos: ['44.009998 6526.500000 -7110.000000']
+      level: 2
+    ez_checkpoint_2:
+      pos: ['140.009995 6506.500000 -7110.000000']
+      level: 2
+    ez_checkpoint_3:
+      pos: ['239.500000 6381.009766 -7110.000000']
+      level: 2
+    ez_checkpoint_4:
+      pos: ['259.500000 6477.009766 -7110.000000']
+      level: 2
+    ez_checkpoint_5:
+      pos: ['350.500000 6509.500000 -7110.000000']
+      level: 3
+    ez_checkpoint_6:
+      pos: ['344.500000 6521.500000 -7110.000000']
+      level: 3
   spawns:
     basic:
       startpos: ['-10995 13000 800', '-4 -25.6 0']
