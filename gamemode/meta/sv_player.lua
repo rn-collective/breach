@@ -15,6 +15,7 @@ local k_buffer  = {
 function PLAYER:HasKeyLevel(lvl)
     local status = false
     local aw = self:GetActiveWeapon() if !aw || !IsValid(aw) || aw.GetClass == nil then return false end
+    if !aw.Deployed then return false end
     for i = 1, #k_buffer do
         if k_buffer[i][1] == aw:GetClass() then
             if table.HasValue(k_buffer[i][2], lvl) then

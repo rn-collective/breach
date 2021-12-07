@@ -76,6 +76,7 @@ function SWEP:CreateWorldModel()
 end
 
 function SWEP:Holster(wep)
+    self.Deployed = nil
     return true
 end
 
