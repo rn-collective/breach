@@ -8,7 +8,8 @@ local k_buffer  = {
     [2] = {'br_keycards_classic_lvl2', {1, 2}},
     [3] = {'br_keycards_classic_lvl3', {1, 2, 3}},
     [4] = {'br_keycards_classic_lvl4', {1, 2, 3, 4}},
-    [5] = {'br_keycards_classic_lvl5', {1, 2, 3, 4, 5}}
+    [5] = {'br_keycards_classic_lvl5', {1, 2, 3, 4, 5}},
+    [6] = {'br_keycards_classic_consul', {1, 2, 3, 4, 5, 6}}
 }
 
 function PLAYER:HasKeyLevel(lvl)
