@@ -48,6 +48,7 @@ hook.Add('PlayerUse', 'BREACH.Basic', function(client, ent)
         if Vector(v.pos[1]) == ent:GetPos() then
             if !client:HasKeyLevel(v.level) then
                 ent:EmitDelayedSound('rn_breach/keycarduse2.ogg', 1)
+                client:Notify('Необходим доступ выше текущего', 3, 3)
                 return false
             end
         end
