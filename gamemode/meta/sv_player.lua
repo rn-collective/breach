@@ -1,6 +1,14 @@
 
-function PLAYER:Notify(str)
-    netstream.Start(self, 'BREACH.ReceiveNotify', str)
+local k_notify_massive = {}
+function PLAYER:Notify(str, delay, dietime)
+    if !k_notify_massive[self:EntIndex()..str] then
+        k_notify_massive[self:EntIndex()..str] = {CurTime() + delay}
+    end
+
+    if k_notify_massive[self:EntIndex()..str][1] < CurTime() then
+        self:SendLua([=[local a = vgui.Create("BREACH.TextScreen"); a:SetDT("]=]..str..[=[", ]=]..dietime..[=[)]=])
+        k_notify_massive[self:EntIndex()..str] = {CurTime() + delay}
+    end
 end
 
 local k_buffer  = {
@@ -29,13 +37,13 @@ end
 
 local k_del_massive = {}
 function ENTITY:EmitDelayedSound(snd, delay)
-    if !k_del_massive[snd] then
-        k_del_massive[snd] = {CurTime() + delay}
+    if !k_del_massive[self:EntIndex()..snd] then
+        k_del_massive[self:EntIndex()..snd] = {CurTime() + delay}
     end
 
-    if k_del_massive[snd][1] < CurTime() then
+    if k_del_massive[self:EntIndex()..snd][1] < CurTime() then
         self:EmitSound(snd)
-        k_del_massive[snd] = {CurTime() + delay}
+        k_del_massive[self:EntIndex()..snd] = {CurTime() + delay}
     end
 end
 
