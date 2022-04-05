@@ -26,11 +26,12 @@ function PANEL:Init()
 end
 
 function PANEL:Paint(w, h)
-    surface.SetFont 'BREACH.TextScreen'
+    --[[surface.SetFont 'BREACH.TextScreen'
     local _w, _h = surface.GetTextSize(self.noticeStr)
 	surface.SetTextColor(255, 255, 255)
 	surface.SetTextPos((w*.5)-_w/2, h*.8)
-	surface.DrawText(self.noticeStr)
+	surface.DrawText(self.noticeStr)]]
+    rnlib.DrawShadowedText(2, self.noticeStr, 'BREACH.TextScreen', w*.5, h*.8, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 end
 
 function PANEL:SetDT(str, time)
